@@ -1,0 +1,26 @@
+{
+  "name": "getting-started-with-react",
+  "version": "0.0.1",
+  "description": "Some literature and code resources introducing React.",
+  "dependencies": {
+    "http-server": "^0.8.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "http-server chapters/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jazlalli/getting-started-with-react.git"
+  },
+  "keywords": [
+    "React"
+  ],
+  "author": "Jaz Lalli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jazlalli/getting-started-with-react/issues"
+  },
+  "homepage": "https://github.com/jazlalli/getting-started-with-react"
+}
