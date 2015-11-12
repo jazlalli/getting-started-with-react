@@ -3,7 +3,7 @@
 Your First Component
 ====================
 
-[Code](./code/index.html)
+[Code](./code)
 
 React is just a view layer. Everything in React is a component. You can
 think of these as web components, Ember components, or Angular
