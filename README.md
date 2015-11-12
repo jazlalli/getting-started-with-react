@@ -3,10 +3,12 @@ Some literature and code resources introducing React.
 
 ### Using this guide
 
-First off, clone this repo and `npm install`. Each topic can be found in
-the corresponding folder in the `chapters` folder. Where a subject has
-code examples, they will be inside the `code` folder in that chapter.
-Run `npm run start` and browse to `localhost:8080` to get started.
+First off, fork this repo so you can keep track of your code samples along
+the way. Once you have the repo, run `npm install`.
+
+Each topic can be found in the corresponding folder in the `chapters` folder.
+Where a subject has code examples, they will be inside the `code` folder in that
+chapter. Run `npm run start` and browse to `localhost:8080` to get started.
 
 # Contents
 

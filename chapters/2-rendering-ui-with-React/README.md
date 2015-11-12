@@ -5,17 +5,13 @@ Your First Component
 
 [Code](./code)
 
-React is just a view layer. Everything in React is a component. You can
-think of these as web components, Ember components, or Angular
-directives. They simply represent a section of your UI.
-
 Rendering UI
 ------------
 
-First, we'll just render a div into the document body:
+First, we'll just render some static stuff into the document body:
 
 ```js
-React.renderComponent(<div>this is dumb</div>, document.body);
+React.renderComponent(<h1>hello world!</h1>, document.body);
 ```
 
 Components are just functions, so we could do this without that freaky
@@ -23,7 +19,7 @@ JSX like so:
 
 ```js
 var div = React.DOM.div;
-React.renderComponent(div({}, 'this is dumb'), document.body);
+React.renderComponent(h1({}, 'hello world!'), document.body);
 ```
 
 Lets create our first component and render it to the page:
@@ -32,9 +28,7 @@ Lets create our first component and render it to the page:
 var App = React.createClass({
   render: function() {
     return (
-      <div className="App">
-        <h1>Hello!</h1>
-      </div>
+      <h1>hello world!</h1>
     );
   }
 });
@@ -74,7 +68,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div className="App">
-        <h1>Hello!</h1>
+        <h1>hello world!</h1>
         <ContentToggle/>
       </div>
     );
