@@ -5,9 +5,11 @@ Some literature and code resources introducing React.
 
 ### Using this guide
 
-First off, fork this repo so you can keep track of your code samples along the way. Once you have the repo, run `npm install`.
+First off, fork this repo so you can keep track of your code samples along the way. Once you've cloned it, run `npm install`.
 
-Each topic can be found in the corresponding folder in the `chapters` folder. Where a subject has code examples, they will be inside the `code` folder in that chapter. Run `npm run start` and browse to `localhost:8080` to get started.
+Each topic can be found in the `chapters` folder. Where a subject has some code samples/exercises, they will be inside the `code` folder within that chapter.
+
+Once you're ready to go, run `npm run start` from the root directory and browse to `localhost:8080`.
 
 # Contents
 
@@ -30,15 +32,15 @@ Introduces
 
 ### 3. State vs props
 
-What are they? When to use them?
+What are they? When to use them? Examples.
 
 ### 4. Setting up your dev environment
 
-Bit of an aside, and kind of a meta-topic, but worth covering given all the different options out there.
+Bit of an aside, and kind of a meta-topic, but worth covering given all the different options out there. A step by step guide.
 
 ### 5. Testing React components
 
-What to test? How to test? Testing tools.
+What to test? How to test? Testing tools. Examples.
 
 ### 6. Building an app with React
 
