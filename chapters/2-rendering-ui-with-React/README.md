@@ -7,15 +7,15 @@
 First, we'll just render some static stuff into the document body:
 
 ```js
-ReactDOM.render(<h1>hello world</h1>, document.getElementById('root'));
+ReactDOM.render(<p>hello world</p>, document.getElementById('root'));
 ```
 
 Components are just functions, so we could do this without that freaky
 JSX like so:
 
 ```js
-const h1 = React.DOM.h1;
-ReactDOM.render(h1({}, 'hello world'), document.getElementById('root'));
+const p = React.DOM.p;
+ReactDOM.render(p({}, 'hello world'), document.getElementById('root'));
 ```
 
 Lets create our first component and render it to the page:
@@ -24,7 +24,7 @@ Lets create our first component and render it to the page:
 var App = React.createClass({
   render: function() {
     return (
-      <h1>hello world!</h1>
+      <p>hello world!</p>
     );
   }
 });
@@ -41,7 +41,7 @@ const { render } = ReactDOM;
 class App extends Component {
   render() {
     return (
-      <h1>hello world!</h1>
+      <p>hello world!</p>
     );
   }
 }
@@ -78,7 +78,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div className="App">
-        <h1>hello world!</h1>
+        <p>hello world!</p>
         <ContentToggle />
       </div>
     );
@@ -93,7 +93,7 @@ And finally, render it into the document:
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-### Data
+### Data (props)
 
 So far our `ContentToggle` is pretty useless. Lets allow the user to
 supply some content to render by using `props`.
@@ -150,6 +150,53 @@ var ContentToggle = React.createClass({
         </div>
         <div className="ContentToggle__Details">
           {this.props.children}
+        </div>
+      </div>
+    );
+  }
+
+});
+```
+
+### Data (state)
+
+In React, the state of your component is restricted to the values on
+`this.state`. Whenever you change state, your component will re-render.
+
+Your component won't actually re-render everything to the DOM, but it
+will re-render to a virtual DOM. It then compares this new virtual DOM
+to the previous one. The resulting diff is the smallest set of
+operations to apply to the real DOM.
+
+We'll use state to manage the visibility of our details view.
+
+```js
+var ContentToggle = React.createClass({
+
+  // lifecycle hook to get initial state and declare what
+  // state you'll be managing in this component
+  getInitialState: function() {
+    return {
+      showDetails: false
+    };
+  },
+
+  handleClick: function(event) {
+    this.setState({
+      showDetails: !this.state.showDetails
+    });
+  },
+
+  render: function() {
+    var details = this.state.showDetails ? this.props.children : null;
+
+    return (
+      <div className="ContentToggle">
+        <div onClick={this.handleClick} className="ContentToggle__Summary">
+          {this.props.summary}
+        </div>
+        <div className="ContentToggle__Details">
+          {details}
         </div>
       </div>
     );
