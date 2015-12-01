@@ -14,7 +14,6 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <h1>hello world!</h1>
         <ContentToggle summary="Some thoughts on tacos">
           <li>Everybody should eat tacos.</li>
           <li>The more tacos the better.</li>
