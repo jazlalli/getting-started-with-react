@@ -27,15 +27,7 @@ Usage:
 
 ### State
 
-In React, the state of your component is restricted to the values on
-`this.state`. Whenever you change state, your component will re-render.
-
-Your component won't actually re-render everything to the DOM, but it
-will re-render to a virtual DOM. It then compares this new virtual DOM
-to the previous one. The resulting diff is the smallest set of
-operations to apply to the real DOM.
-
-We'll use state to manage the visibility of our details view.
+And this is how we used state to manage the visibility of the details view.
 
 ```js
 var ContentToggle = React.createClass({
