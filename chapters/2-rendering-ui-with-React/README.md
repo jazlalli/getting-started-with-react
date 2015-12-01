@@ -116,7 +116,7 @@ var ContentToggle = React.createClass({
 Usage:
 
 ```xml
-<ContentToggle summary="Tacos">
+<ContentToggle summary="Some thoughts on tacos">
   <p>Everybody should eat tacos.</p>
 </ContentToggle>
 ```

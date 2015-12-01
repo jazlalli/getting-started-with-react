@@ -1,6 +1,8 @@
 # State vs. Props
 
-Let's re-visit the ContentToggle example. This is how we used props
+[Code](./code)
+
+First, let's re-visit the ContentToggle example. This is how we used props
 
 ```js
 var ContentToggle = React.createClass({
@@ -8,8 +10,8 @@ var ContentToggle = React.createClass({
   render: function() {
     return (
       <div>
-        <div>{this.props.summary}</div>
-        <div>{this.props.children}</div>
+        <h3>{this.props.summary}</h3>
+        <ul>{this.props.children}</ul>
       </div>
     );
   }
@@ -20,8 +22,10 @@ var ContentToggle = React.createClass({
 Usage:
 
 ```xml
-<ContentToggle summary="Tacos">
-  <p>Everybody should eat tacos.</p>
+<ContentToggle summary="Some thoughts on tacos">
+  <li>Everybody should eat tacos.</li>
+  <li>The more tacos the better.</li>
+  <li>Fajitas are OK too though.</li>
 </ContentToggle>
 ```
 
@@ -83,19 +87,19 @@ var ContentToggle = React.createClass({
 
   render: function() {
     var details;
-    var summaryClassName = 'hidden';
+    var summaryClassName = '';
 
     if (this.state.showDetails) {
       details = this.props.children;
-      summaryClassName = 'visible';
+      summaryClassName = 'expanded';
     }
 
     return (
-      <div className="ContentToggle">
+      <div>
         <div onClick={this.handleClick} className={summaryClassName}>
           {this.props.summary}
         </div>
-        <div className="ContentToggle__Details">
+        <div>
           {details}
         </div>
       </div>
@@ -115,3 +119,10 @@ When you first look at these render methods coming from other view
 libraries it seems ... well, terrible. But it doesn't take long to enjoy
 the simple mental model and ability to express your UI wherever it makes
 sense.
+
+### Functions as props
+
+In React you can communicate between components with functions passed from parents to children, and then children call those functions.
+
+
+
