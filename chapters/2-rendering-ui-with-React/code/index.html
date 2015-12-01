@@ -1,12 +1,17 @@
-<!doctype html>
-<meta charset="utf-8" />
-<title>ContentToggler</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="//writ.cmcenroe.me/1.0.2/writ.min.css">
-<body>
-<script src="//npmcdn.com/react@0.14.2/dist/react.min.js"></script>
-<script src="//npmcdn.com/react-dom@0.14.2/dist/react-dom.min.js"></script>
-<script src="//fb.me/JSXTransformer-0.11.1.js"></script>
-<script type="text/jsx" src="index.js"></script>
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Renderin UI with React</title>
+    <script src="https://fb.me/react-0.14.3.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const h1 = React.DOM.h1;
+      ReactDOM.render(h1({}, 'hello world'), document.getElementById('root'));
+    </script>
+  </body>
 </html>

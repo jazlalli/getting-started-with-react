@@ -11,15 +11,15 @@ Rendering UI
 First, we'll just render some static stuff into the document body:
 
 ```js
-React.renderComponent(<h1>hello world!</h1>, document.body);
+ReactDOM.render(<h1>hello world</h1>, document.getElementById('root'));
 ```
 
 Components are just functions, so we could do this without that freaky
 JSX like so:
 
 ```js
-var div = React.DOM.div;
-React.renderComponent(h1({}, 'hello world!'), document.body);
+const h1 = React.DOM.h1;
+ReactDOM.render(h1({}, 'hello world'), document.getElementById('root'));
 ```
 
 Lets create our first component and render it to the page:
@@ -33,7 +33,24 @@ var App = React.createClass({
   }
 });
 
-React.renderComponent(<App/>, document.body);
+ReactDOM.render(<App/>, document.getElementById('root'));
+```
+
+or using ES6 classes:
+
+```js
+const { Component } = React;
+const { render } = ReactDOM;
+
+class App extends Component {
+  render() {
+    return (
+      <h1>hello world!</h1>
+    );
+  }
+}
+
+render(<App />, document.getElementById('root'))
 ```
 
 **Note**: You must always return a root element from the `render`
@@ -48,7 +65,6 @@ views, directives, etc.
 
 ```js
 var ContentToggle = React.createClass({
-
   render: function() {
     return (
       <div className="ContentToggle">
@@ -56,7 +72,6 @@ var ContentToggle = React.createClass({
       </div>
     );
   }
-
 });
 ```
 
@@ -64,12 +79,11 @@ Now, to use this in `App`, we simply add it to the render method.
 
 ```js
 var App = React.createClass({
-
   render: function() {
     return (
       <div className="App">
         <h1>hello world!</h1>
-        <ContentToggle/>
+        <ContentToggle />
       </div>
     );
   }
@@ -80,7 +94,7 @@ var App = React.createClass({
 And finally, render it into the document:
 
 ```js
-React.renderComponent(<App/>, document.body);
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 Props

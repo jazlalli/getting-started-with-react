@@ -1,6 +1,8 @@
 # getting-started-with-react
 Some literature and code resources introducing React.
 
+#### This repo is an update and extension of Ryan Florence repo - [react-training](https://github.com/ryanflorence/react-training).
+
 ### Using this guide
 
 First off, fork this repo so you can keep track of your code samples along
