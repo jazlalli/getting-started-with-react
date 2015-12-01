@@ -63,7 +63,7 @@ views, directives, etc.
 var ContentToggle = React.createClass({
   render: function() {
     return (
-      <div className="ContentToggle">
+      <div>
         I am a ContentToggle
       </div>
     );
@@ -77,7 +77,7 @@ Now, to use this in `App`, we simply add it to the render method.
 var App = React.createClass({
   render: function() {
     return (
-      <div className="App">
+      <div>
         <p>hello world!</p>
         <ContentToggle />
       </div>
@@ -103,9 +103,9 @@ var ContentToggle = React.createClass({
 
   render: function() {
     return (
-      <div className="ContentToggle">
-        <div className="ContentToggle__Summary">{this.props.summary}</div>
-        <div className="ContentToggle__Details">{this.props.children}</div>
+      <div>
+        <div>{this.props.summary}</div>
+        <div>{this.props.children}</div>
       </div>
     );
   }
@@ -144,11 +144,11 @@ var ContentToggle = React.createClass({
 
   render: function() {
     return (
-      <div className="ContentToggle">
-        <div onClick={this.handleClick} className="ContentToggle__Summary">
+      <div>
+        <div onClick={this.handleClick}>
           {this.props.summary}
         </div>
-        <div className="ContentToggle__Details">
+        <div>
           {this.props.children}
         </div>
       </div>
@@ -191,11 +191,11 @@ var ContentToggle = React.createClass({
     var details = this.state.showDetails ? this.props.children : null;
 
     return (
-      <div className="ContentToggle">
-        <div onClick={this.handleClick} className="ContentToggle__Summary">
+      <div>
+        <div onClick={this.handleClick}>
           {this.props.summary}
         </div>
-        <div className="ContentToggle__Details">
+        <div>
           {details}
         </div>
       </div>
@@ -236,11 +236,11 @@ var ContentToggle = React.createClass({
     // ...
 
     return (
-      <div className="ContentToggle">
-        <div tabIndex="0" onClick={this.handleClick} className={summaryClassName}>
+      <div>
+        <div tabIndex="0" onClick={this.handleClick}>
           {this.props.summary}
         </div>
-        <div ref="details" tabIndex="-1" className="ContentToggle__Details">
+        <div ref="details" tabIndex="-1">
           {details}
         </div>
       </div>
