@@ -1,12 +1,8 @@
 # Rendering UI with React
 
-Your First Component
-====================
-
 [Code](./code)
 
-Rendering UI
-------------
+### Rendering UI
 
 First, we'll just render some static stuff into the document body:
 
@@ -36,7 +32,7 @@ var App = React.createClass({
 ReactDOM.render(<App/>, document.getElementById('root'));
 ```
 
-or using ES6 classes:
+or using ES6 classes if you prefer:
 
 ```js
 const { Component } = React;
@@ -50,7 +46,7 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById('root'))
+render(<App />, document.getElementById('root'));
 ```
 
 **Note**: You must always return a root element from the `render`
@@ -97,8 +93,7 @@ And finally, render it into the document:
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-Props
------
+### Data
 
 So far our `ContentToggle` is pretty useless. Lets allow the user to
 supply some content to render by using `props`.
@@ -134,8 +129,7 @@ Note the `{curlies}`. When you're in JSX, this is how you bust back out
 into JavaScript. So you've got JavaScript in your XML in your JavaScript
 and you'll most likely love it soon but hate it right now.
 
-Event Handlers
---------------
+### Event Handlers
 
 We want to click the summary and have the details toggle it's
 visibility.  React uses `camelCase` names for event handlers declared on the
@@ -164,109 +158,7 @@ var ContentToggle = React.createClass({
 });
 ```
 
-State
------
-
-In React, the state of your component is restricted to the values on
-`this.state`. Whenever you change state, your component will re-render.
-
-Your component won't actually re-render everything to the DOM, but it
-will re-render to a virtual DOM. It then compares this new virtual DOM
-to the previous one. The resulting diff is the smallest set of
-operations to apply to the real DOM.
-
-We'll use state to manage the visibility of our details view.
-
-```js
-var ContentToggle = React.createClass({
-
-  // lifecycle hook to get initial state and declare what
-  // state you'll be managing in this component
-  getInitialState: function() {
-    return {
-      showDetails: false
-    };
-  },
-
-  handleClick: function(event) {
-    this.setState({
-      showDetails: !this.state.showDetails
-    });
-  },
-
-  render: function() {
-    var details = this.state.showDetails ? this.props.children : null;
-
-    return (
-      <div className="ContentToggle">
-        <div onClick={this.handleClick} className="ContentToggle__Summary">
-          {this.props.summary}
-        </div>
-        <div className="ContentToggle__Details">
-          {details}
-        </div>
-      </div>
-    );
-  }
-
-});
-```
-
-"Always Re-render" Model
-------------------------
-
-You hear the term "always re-render" in React. Instead of initializing a
-view and then observing values as they change over time (a difficult
-mental model as more things start happening in your views), in your
-render method you get to pretend like this is the first and only time
-you're ever rendering. Or, you can think of it like stateless
-server-side rendering like you do in Rails or PHP.
-
-Let's add some classes to our elements to see if we can get a feel for
-what this means.
-
-```js
-var ContentToggle = React.createClass({
-
-  // ...
-
-  render: function() {
-    var details;
-    var summaryClassName = 'ContentToggle__Summary';
-
-    if (this.state.showDetails) {
-      details = this.props.children;
-      summaryClassName += ' ContentToggle__Summary--open';
-    }
-
-    return (
-      <div className="ContentToggle">
-        <div onClick={this.handleClick} className={summaryClassName}>
-          {this.props.summary}
-        </div>
-        <div className="ContentToggle__Details">
-          {details}
-        </div>
-      </div>
-    );
-  }
-
-});
-```
-
-Rather than observing state over time, we just consider the current
-state and build up our `className`. There is no adding or removing, just
-building. Again, its the same mental model as server rendering. You
-don't observe fields in the database and then change the HTML a route
-will render, you just render the data as it is right now.
-
-When you first look at these render methods coming from other view
-libraries it seems ... well, terrible. But it doesn't take long to enjoy
-the simple mental model and ability to express your UI wherever it makes
-sense.
-
-Managing Focus and Refs
------------------------
+### Managing Focus and Refs
 
 To make this accessible, we need to manage focus. First we simply add
 `tabIndex="0"` to the summary to make it tabbable and `tabIndex="-1"` to
@@ -324,8 +216,7 @@ its next render cycle from calling `setState`, focus the element in the
 this.setState(someState, this.focusSomething);
 ```
 
-Homework
------------------
+### Exercise
 
 Right now only clicking will toggle the details. Add keyboard support so
 that `enter` and `space` will too.
