@@ -36,7 +36,7 @@ component in your app.
 
 ```js
 var node = document.getElementById('test-node');
-React.renderComponent(<ContentToggle />, node);
+ReactDOM.render(<ContentToggle />, node);
 ```
 
 And then make sure to unmount after each test

@@ -228,7 +228,7 @@ var ContentToggle = React.createClass({
     this.setState({
       showDetails: !this.state.showDetails
     });
-    this.refs.details.getDOMNode().focus();
+    this.refs.details.focus();
   },
 
   render: function() {
@@ -251,8 +251,7 @@ var ContentToggle = React.createClass({
 ```
 
 Note the `ref="details"` and then accessing it in `handleClick` with
-`this.refs.details`. Finally, to get at the actual DOM node, you call
-`getDOMNode()` on a ref.
+`this.refs.details`.
 
 We are fortunate that `refs.details` is always rendered. If the element
 you need to focus is not going to be rendered until React is done with
