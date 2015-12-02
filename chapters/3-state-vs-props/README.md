@@ -5,9 +5,8 @@
 First, let's re-visit the ContentToggle example. This is how we used props
 
 ```js
-var ContentToggle = React.createClass({
-
-  render: function() {
+class ContentToggle extends Component {
+  render() {
     return (
       <div>
         <h3>{this.props.summary}</h3>
@@ -15,8 +14,7 @@ var ContentToggle = React.createClass({
       </div>
     );
   }
-
-});
+}
 ```
 
 Usage:
@@ -34,38 +32,38 @@ Usage:
 And this is how we used state to manage the visibility of the details view.
 
 ```js
-var ContentToggle = React.createClass({
+class ContentToggle extends Component {
 
   // lifecycle hook to get initial state and declare what
   // state you'll be managing in this component
-  getInitialState: function() {
+  getInitialState() {
     return {
       showDetails: false
     };
-  },
+  }
 
-  handleClick: function(event) {
+  handleClick(event) {
     this.setState({
       showDetails: !this.state.showDetails
     });
-  },
+  }
 
-  render: function() {
+  render() {
     var details = this.state.showDetails ? this.props.children : null;
 
     return (
       <div>
-        <div onClick={this.handleClick}>
+        <h3 onClick={this.handleClick}>
           {this.props.summary}
-        </div>
-        <div>
+        </h3>
+        <ul>
           {details}
-        </div>
+        </ul>
       </div>
     );
   }
 
-});
+}
 ```
 
 ### "Always Re-render" Model
@@ -81,11 +79,11 @@ Let's add some classes to our elements to see if we can get a feel for
 what this means.
 
 ```js
-var ContentToggle = React.createClass({
+class ContentToggle extends Component {
 
   // ...
 
-  render: function() {
+  render() {
     var details;
     var summaryClassName = '';
 
@@ -106,7 +104,7 @@ var ContentToggle = React.createClass({
     );
   }
 
-});
+}
 ```
 
 Rather than observing state over time, we just consider the current

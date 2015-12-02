@@ -24,7 +24,7 @@ Lets create our first component and render it to the page:
 var App = React.createClass({
   render: function() {
     return (
-      <p>hello world!</p>
+      <h3>hello world!</h3>
     );
   }
 });
@@ -41,7 +41,7 @@ const { render } = ReactDOM;
 class App extends Component {
   render() {
     return (
-      <p>hello world!</p>
+      <h3>hello world!</h3>
     );
   }
 }
@@ -60,31 +60,30 @@ components. There is no distinction between components, controllers,
 views, directives, etc.
 
 ```js
-var ContentToggle = React.createClass({
-  render: function() {
+class ContentToggle extends Component {
+  render() {
     return (
       <div>
         I am a ContentToggle
       </div>
     );
   }
-});
+}
 ```
 
 Now, to use this in `App`, we simply add it to the render method.
 
 ```js
-var App = React.createClass({
-  render: function() {
+class App extends Component {
+  render() {
     return (
       <div>
-        <p>hello world!</p>
+        <h3>hello world!</h3>
         <ContentToggle />
       </div>
     );
   }
-
-});
+}
 ```
 
 And finally, render it into the document:
@@ -99,25 +98,23 @@ So far our `ContentToggle` is pretty useless. Lets allow the user to
 supply some content to render by using `props`.
 
 ```js
-var ContentToggle = React.createClass({
-
-  render: function() {
+class ContentToggle extends Component {
+  render() {
     return (
       <div>
-        <div>{this.props.summary}</div>
-        <div>{this.props.children}</div>
+        <h3>{this.props.summary}</h3>
+        <ul>{this.props.children}</ul>
       </div>
     );
   }
-
-});
+}
 ```
 
 Usage:
 
 ```xml
 <ContentToggle summary="Some thoughts on tacos">
-  <p>Everybody should eat tacos.</p>
+  <li>Everybody should eat tacos.</li>
 </ContentToggle>
 ```
 
@@ -136,26 +133,25 @@ visibility.  React uses `camelCase` names for event handlers declared on the
 element itself: `onClick`, not `onclick`.
 
 ```js
-var ContentToggle = React.createClass({
+class ContentToggle extends Component {
 
-  handleClick: function(event) {
+  handleClick(event) {
     console.log('soo ... now what?');
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div>
-        <div onClick={this.handleClick}>
+        <h3 onClick={this.handleClick}>
           {this.props.summary}
-        </div>
-        <div>
+        </h3>
+        <ul>
           {this.props.children}
-        </div>
+        </ul>
       </div>
     );
   }
-
-});
+}
 ```
 
 ### Data (state)
@@ -171,38 +167,38 @@ operations to apply to the real DOM.
 We'll use state to manage the visibility of our details view.
 
 ```js
-var ContentToggle = React.createClass({
+class ContentToggle extends Component {
 
   // lifecycle hook to get initial state and declare what
   // state you'll be managing in this component
-  getInitialState: function() {
+  getInitialState() {
     return {
       showDetails: false
     };
-  },
+  }
 
-  handleClick: function(event) {
+  handleClick(event) {
     this.setState({
       showDetails: !this.state.showDetails
     });
-  },
+  }
 
-  render: function() {
+  render() {
     var details = this.state.showDetails ? this.props.children : null;
 
     return (
       <div>
-        <div onClick={this.handleClick}>
+        <h3 onClick={this.handleClick}>
           {this.props.summary}
-        </div>
-        <div>
+        </h3>
+        <ul>
           {details}
-        </div>
+        </ul>
       </div>
     );
   }
 
-});
+}
 ```
 
 ### Managing Focus and Refs
@@ -220,34 +216,34 @@ Refs are sort of like element IDs but scoped to the component that owns
 the ref.
 
 ```js
-var ContentToggle = React.createClass({
+class ContentToggle extends Component{
 
   // ...
 
-  handleClick: function(event) {
+  handleClick(event) {
     this.setState({
       showDetails: !this.state.showDetails
     });
     this.refs.details.focus();
-  },
+  }
 
-  render: function() {
+  render() {
 
     // ...
 
     return (
       <div>
-        <div tabIndex="0" onClick={this.handleClick}>
+        <h3 tabIndex="0" onClick={this.handleClick}>
           {this.props.summary}
-        </div>
-        <div ref="details" tabIndex="-1">
+        </h3>
+        <ul ref="details" tabIndex="-1">
           {details}
-        </div>
+        </ul>
       </div>
     );
   }
 
-});
+}
 ```
 
 Note the `ref="details"` and then accessing it in `handleClick` with

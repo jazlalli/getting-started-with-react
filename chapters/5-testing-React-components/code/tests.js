@@ -38,11 +38,11 @@ class ContentToggle extends Component {
 
   render() {
     let details = null;
-    let summaryClassName = 'ContentToggle__Summary';
+    let summaryClassName = 'summary';
 
     if (this.state.showDetails) {
       details = this.props.children;
-      summaryClassName = ' ContentToggle__Summary--open';
+      summaryClassName = ' expanded';
     }
 
     return (
@@ -50,7 +50,7 @@ class ContentToggle extends Component {
         <div tabIndex="0" onClick={this.handleClick} className={summaryClassName}>
           {this.props.summary}
         </div>
-        <div ref="details" tabIndex="-1" className="ContentToggle__Details">
+        <div ref="details" tabIndex="-1">
           {details}
         </div>
       </div>
@@ -73,7 +73,7 @@ equal(details.innerHTML.trim(), '', 'details are hidden by default');
 
 // simulate an action on summary
 const { Simulate } = TestUtils;
-const summary = findDOMNode(component).querySelector('.ContentToggle__Summary')
+const summary = findDOMNode(component).querySelector('.summary')
 
 // simulate a click
 Simulate.click(summary);

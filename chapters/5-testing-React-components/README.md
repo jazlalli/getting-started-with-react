@@ -4,7 +4,7 @@
 
 Setting up a test for a React component is not really different than
 rendering it into your app. Let's test our `ContentToggle` component
-from the last lesson.
+from before.
 
 To illustrate only the concepts that you need for React, we'll not use
 any testing frameworks. Instead, we'll make possibly the best JavaScript
@@ -35,7 +35,7 @@ Rendering components for testing is no different than rendering a
 component in your app.
 
 ```js
-var node = document.getElementById('test-node');
+const node = document.getElementById('test-node');
 ReactDOM.render(<ContentToggle />, node);
 ```
 
@@ -56,18 +56,18 @@ up your tests though, you can use `renderIntoDocument` for all the tests
 that don't assert element focus.
 
 ```js
-var TestUtils = React.addons.TestUtils;
-var wrapper = document.getElementById('test-wrapper');
+const {TestUtils} = React.addons;
+const wrapper = document.getElementById('test-wrapper');
 
 // render a component to test
-var component = ReactDOM.render((
+const component = ReactDOM.render((
   <ContentToggle summary="I am the summary">
     I am the content
   </ContentToggle>
 ), wrapper);
 
 // get the details DOM node
-var details = component.refs.details;
+const details = component.refs.details;
 
 // assert
 equal(details.innerHTML.trim(), '', 'details are hidden by default');
@@ -87,8 +87,8 @@ display and receive focus.
 
 ```js
 // simulate an action on summary
-var Simulate = TestUtils.Simulate;
-var summary = ReactDOM.findDOMNode(component).querySelector('.ContentToggle__Summary');
+const Simulate = TestUtils.Simulate;
+const summary = ReactDOM.findDOMNode(component).querySelector('.summary');
 
 // simulate a click
 Simulate.click(summary);

@@ -16,21 +16,21 @@ var ContentToggle = React.createClass({
 
   render: function() {
     var details;
-    var summaryClassName = '';
+    var summaryClassName = 'summary';
 
     if (this.state.showDetails) {
       details = this.props.children;
-      summaryClassName = 'expanded';
+      summaryClassName += ' expanded';
     }
 
     return (
       <div>
-        <div onClick={this.handleClick} className={summaryClassName}>
+        <h3 onClick={this.handleClick} className={summaryClassName}>
           {this.props.summary}
-        </div>
-        <div>
+        </h3>
+        <ul className='content'>
           {details}
-        </div>
+        </ul>
       </div>
     );
   }
@@ -43,9 +43,9 @@ var App = React.createClass({
     return (
       <div>
         <ContentToggle summary="Some thoughts on tacos">
-          <li>Everybody should eat tacos.</li>
-          <li>The more tacos the better.</li>
-          <li>Fajitas are OK too though.</li>
+          <li>Everybody should eat tacos.<span className='remove'>x</span></li>
+          <li>The more tacos the better.<span className='remove'>x</span></li>
+          <li>Fajitas are OK too though.<span className='remove'>x</span></li>
         </ContentToggle>
       </div>
     );
