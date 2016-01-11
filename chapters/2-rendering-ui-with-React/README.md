@@ -56,7 +56,7 @@ var App = React.createClass({
   render() {
     return (
       <div>
-        <h3>hello world!</h3>
+        <h2>Hello, world!</h2>
         <ContentToggle />
       </div>
     );
@@ -217,4 +217,4 @@ this.setState(someState, this.focusSomething);
 
 ### Exercise
 
-Right now only clicking will toggle the details. Add keyboard support so that `enter` and `space` will too.
+Right now, only clicking will toggle the details. Add keyboard support so that `enter` and `space` will too.

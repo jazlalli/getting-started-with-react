@@ -109,7 +109,7 @@ class ContentToggle extends Component {
 
 Rather than observing state over time, we just consider the current
 state and build up our `className`. There is no adding or removing, just
-building. Again, its the same mental model as server rendering. You
+building. Again, it's the same mental model as server rendering. You
 don't observe fields in the database and then change the HTML a route
 will render, you just render the data as it is right now.
 

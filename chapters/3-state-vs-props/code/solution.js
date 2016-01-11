@@ -1,20 +1,32 @@
 var App = React.createClass({
+
+  getInitialState() {
+    return {
+      items: [
+        "Everybody should eat tacos",
+        "The more tacos the better",
+        "Fajitas are OK too though"
+      ]
+    }
+  },
+
+  handleClick(itemIndex) {
+    var items = this.state.items.filter((i, idx) => idx !== itemIndex);
+
+    this.setState({
+      items: items
+    });
+  },
+
   render() {
+    var content = this.state.items.map((i, idx) => (
+      <li key={idx}>{i} <span className="remove" onClick={this.handleClick.bind(this, idx)}></span></li>
+    ));
+
     return (
       <div>
         <ContentToggle summary="Some thoughts on tacos">
-          <li>
-            Everybody should eat tacos
-            <span className="remove"></span>
-          </li>
-          <li>
-            The more tacos the better
-            <span className="remove"></span>
-          </li>
-          <li>
-            Fajitas are OK too though
-            <span className="remove"></span>
-          </li>
+          {content}
         </ContentToggle>
       </div>
     );
@@ -47,7 +59,7 @@ var ContentToggle = React.createClass({
     var listClassName = 'content';
     var details = this.state.showDetails ? this.props.children : null;
 
-    if (details) {
+    if (details && details.length) {
       listClassName += ' expanded';
     }
 

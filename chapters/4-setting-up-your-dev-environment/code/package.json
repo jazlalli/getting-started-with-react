@@ -1,0 +1,32 @@
+{
+  "name": "react-dev-env-example",
+  "version": "0.0.1",
+  "description": "simple steps to setup dev env",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src",
+    "start": "node server.js"
+  },
+  "author": "Jaz Lalli",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.34",
+    "babel-eslint": "^5.0.0-beta4",
+    "babel-loader": "^5.4.0",
+    "babel-plugin-react-transform": "^1.1.1",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.11.2",
+    "express": "^4.13.3",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
+    "redbox-react": "^1.2.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.6.0"
+  }
+}

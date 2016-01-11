@@ -1,1 +1,1 @@
-ReactDOM.render(<p>hello world</p>, document.getElementById('root'));
+ReactDOM.render(<p>Hello, world!</p>, document.getElementById('root'));
