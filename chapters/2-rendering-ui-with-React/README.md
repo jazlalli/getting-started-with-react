@@ -6,21 +6,20 @@
 
 First, we'll just render some static stuff into the document body:
 
-```js
+```javascript
 ReactDOM.render(<p>hello world</p>, document.getElementById('root'));
 ```
 
-Components are just functions, so we could do this without that freaky
-JSX like so:
+Components are just functions, so we could do this without that freaky JSX like so:
 
-```js
+```javascript
 const p = React.DOM.p;
 ReactDOM.render(p({}, 'hello world'), document.getElementById('root'));
 ```
 
 Lets create our first component and render it to the page:
 
-```js
+```javascript
 var App = React.createClass({
   render: function() {
     return (
@@ -32,35 +31,14 @@ var App = React.createClass({
 ReactDOM.render(<App/>, document.getElementById('root'));
 ```
 
-or using ES6 classes if you prefer:
+**Note**: You must always return a root element from the `render` method. If you get weird errors this is probably why.
 
-```js
-const { Component } = React;
-const { render } = ReactDOM;
+Now lets create a content toggle component. When you click the summary, the details will expand or contract.
 
-class App extends Component {
-  render() {
-    return (
-      <h3>hello world!</h3>
-    );
-  }
-}
+In React, your top-level `App` component and small UI controls are all components. There is no distinction between components, controllers, views, directives, etc.
 
-render(<App />, document.getElementById('root'));
-```
-
-**Note**: You must always return a root element from the `render`
-method. If you get weird errors this is probably why.
-
-Now lets create a content toggle component. When you click the summary,
-the details will expand or contract.
-
-In React, your top-level `App` component and small UI controls are all
-components. There is no distinction between components, controllers,
-views, directives, etc.
-
-```js
-class ContentToggle extends Component {
+```javascript
+var ContentToggle = React.createClass({
   render() {
     return (
       <div>
@@ -68,13 +46,13 @@ class ContentToggle extends Component {
       </div>
     );
   }
-}
+});
 ```
 
 Now, to use this in `App`, we simply add it to the render method.
 
-```js
-class App extends Component {
+```javascript
+var App = React.createClass({
   render() {
     return (
       <div>
@@ -83,22 +61,21 @@ class App extends Component {
       </div>
     );
   }
-}
+});
 ```
 
 And finally, render it into the document:
 
-```js
+```javascript
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 ### Data (props)
 
-So far our `ContentToggle` is pretty useless. Lets allow the user to
-supply some content to render by using `props`.
+So far our `ContentToggle` is pretty useless. Lets allow the user to supply some content to render by using `props`.
 
-```js
-class ContentToggle extends Component {
+```javascript
+var ContentToggle = React.createClass({
   render() {
     return (
       <div>
@@ -107,7 +84,7 @@ class ContentToggle extends Component {
       </div>
     );
   }
-}
+});
 ```
 
 Usage:
@@ -118,27 +95,19 @@ Usage:
 </ContentToggle>
 ```
 
-Properties are passed in just like HTML attributes. You access the
-children nested in the component on `this.props.children`; this
-is like `{{yield}}` in Ember or Angular's `ng-transclude`.
+Properties are passed in just like HTML attributes. You access the children in the component on `this.props.children`. This is like `{{yield}}` in Ember or Angular's `ng-transclude`.
 
-Note the `{curlies}`. When you're in JSX, this is how you bust back out
-into JavaScript. So you've got JavaScript in your XML in your JavaScript
-and you'll most likely love it soon but hate it right now.
+Note the `{curlies}`. When you're in JSX, this is how you bust back out into JavaScript. So you've got JavaScript in your XML in your JavaScript and you'll most likely love it soon but hate it right now.
 
 ### Event Handlers
 
-We want to click the summary and have the details toggle it's
-visibility.  React uses `camelCase` names for event handlers declared on the
-element itself: `onClick`, not `onclick`.
+We want to click the summary and toggle it's visibility. React uses `camelCase` names for event handlers declared on the element itself: so it's `onClick`, not `onclick`.
 
-```js
-class ContentToggle extends Component {
-
+```javascript
+var ContentToggle = React.createClass({
   handleClick(event) {
     console.log('soo ... now what?');
-  }
-
+  },
   render() {
     return (
       <div>
@@ -151,7 +120,7 @@ class ContentToggle extends Component {
       </div>
     );
   }
-}
+});
 ```
 
 ### Data (state)
@@ -159,15 +128,12 @@ class ContentToggle extends Component {
 In React, the state of your component is restricted to the values on
 `this.state`. Whenever you change state, your component will re-render.
 
-Your component won't actually re-render everything to the DOM, but it
-will re-render to a virtual DOM. It then compares this new virtual DOM
-to the previous one. The resulting diff is the smallest set of
-operations to apply to the real DOM.
+Your component won't actually re-render everything to the DOM, but it will re-render to a virtual DOM. It then compares this new virtual DOM to the previous one. The resulting diff is the smallest set of operations to apply to the real DOM.
 
 We'll use state to manage the visibility of our details view.
 
-```js
-class ContentToggle extends Component {
+```javascript
+var ContentToggle = React.createClass({
 
   // lifecycle hook to get initial state and declare what
   // state you'll be managing in this component
@@ -175,13 +141,13 @@ class ContentToggle extends Component {
     return {
       showDetails: false
     };
-  }
+  },
 
   handleClick(event) {
     this.setState({
       showDetails: !this.state.showDetails
     });
-  }
+  },
 
   render() {
     var details = this.state.showDetails ? this.props.children : null;
@@ -198,25 +164,19 @@ class ContentToggle extends Component {
     );
   }
 
-}
+});
 ```
 
 ### Managing Focus and Refs
 
-To make this accessible, we need to manage focus. First we simply add
-`tabIndex="0"` to the summary to make it tabbable and `tabIndex="-1"` to
-the details so we can programmatically focus it. But, the real task is
-to go focus the details when it expands.
+To make this accessible, we need to manage focus. First we simply add `tabIndex="0"` to the summary to make it tabbable and `tabIndex="-1"` to the details so we can programmatically focus it. But, the real task is to go focus the details when it expands.
 
-In order to do this we need to access the the details element. Instead
-of relying on DOM traversal like `this.$()` from Ember or the `element`
-api in an Angular directive, to get at our elements React uses `refs`.
+In order to do this we need to access the the details element. Instead of relying on DOM traversal like `this.$()` from Ember or the `element` API in an Angular directive, to get at our elements React uses `refs`.
 
-Refs are sort of like element IDs but scoped to the component that owns
-the ref.
+Refs are sort of like element IDs but scoped to the component that owns the ref.
 
-```js
-class ContentToggle extends Component{
+```javascript
+var ContentToggle = React.createClass({
 
   // ...
 
@@ -224,6 +184,7 @@ class ContentToggle extends Component{
     this.setState({
       showDetails: !this.state.showDetails
     });
+
     this.refs.details.focus();
   }
 
@@ -243,22 +204,17 @@ class ContentToggle extends Component{
     );
   }
 
-}
+});
 ```
 
-Note the `ref="details"` and then accessing it in `handleClick` with
-`this.refs.details`.
+Note the `ref="details"` and then accessing it in `handleClick` with `this.refs.details`.
 
-We are fortunate that `refs.details` is always rendered. If the element
-you need to focus is not going to be rendered until React is done with
-its next render cycle from calling `setState`, focus the element in the
-`setState` callback.
+We are fortunate that `refs.details` is always rendered. If the element you need to focus is not going to be rendered until React is done with its next render cycle from calling `setState`, focus the element in the `setState` callback.
 
-```js
+```javascript
 this.setState(someState, this.focusSomething);
 ```
 
 ### Exercise
 
-Right now only clicking will toggle the details. Add keyboard support so
-that `enter` and `space` will too.
+Right now only clicking will toggle the details. Add keyboard support so that `enter` and `space` will too.
